@@ -1,6 +1,7 @@
 package com.textview.txt;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -13,6 +14,9 @@ import android.view.View;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,13 +33,14 @@ import android.view.Menu;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static String userID;   //모든 클래스에서 접근가능
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //읽기 권한 요청 - dev
+
+        //읽기 권한 요청
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             }
         }
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,5 +97,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 */
+
 
 }

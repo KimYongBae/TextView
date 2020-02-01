@@ -1,45 +1,37 @@
 package com.textview.txt.ui.slideshow;
 
+
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.textview.txt.MainActivity;
 import com.textview.txt.R;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-public class fileFragment extends Fragment {
-    /**/
-    File[] files;
-    private TextView item_textview;
-    /* item은 탐색기에 표시될 내용, path는 item 클릭시 이동할 경로이다. */
-    private List<String> item = null;
-    private List<String> path = null;
-    /* 루트 디렉토리 설정 */
-    String root= Environment.getExternalStorageDirectory().toString();
-    /* 현재 경로를 저장해주는 변수 MPath */
-    private String MPath;
-    /* 현재 경로를 보여줄 변수 myPath */
-    private TextView myPath;
-    /* 디렉토리 일경우 */
-    String Dname;
-    /* 파일 관련 변수*/
-    ListView listview;
-    List<String> list;
-    ArrayAdapter<String> adapter;
-    /**/
+public class fileFragment extends Fragment{
+
+
     private fileViewModel fileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,8 +44,22 @@ public class fileFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+
             }
         });
+
+        //---------------------------------------
+        ArrayList<String> list = new ArrayList<String>();
+        final ListView listview = (ListView)root.findViewById(R.id.file_list_view);
+        ArrayAdapter<String> adapter =  new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
+        listview.setAdapter(adapter);
+
+        list.add("LIST-0001");
+        list.add("LIST-0002");
+        list.add("LIST-0003");
+        adapter.notifyDataSetChanged();
+       //----------------------------------------
+
         return root;
 
 

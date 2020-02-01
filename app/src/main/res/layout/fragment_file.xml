@@ -19,8 +19,8 @@
     <LinearLayout
         android:background="#eeeeee"
         android:orientation="vertical"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
 
         <!-- 타이틀바 -->
         <LinearLayout
@@ -49,8 +49,8 @@
 
             <ListView
                 android:id="@+id/file_list_view"
-                android:layout_width="409dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="1dp"
@@ -62,6 +62,7 @@
 
             </ListView>
 
+
         </LinearLayout>
         <!-- Notice -->
 
@@ -72,8 +73,7 @@
 
         <!-- 닫기 버튼 -->
 
-
         <!--// 닫기 버튼 -->
-    </LinearLayout>
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
