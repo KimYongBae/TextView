@@ -4,76 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_slideshow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
         android:background="#eeeeee"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="match_parent"
+        android:layout_margin="0dp">
 
         <!-- 타이틀바 -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp">
             <!-- 경로적기 -->
             <TextView
-                android:id="@+id/path"
-                android:text="Notice"
-                android:textSize="20sp"
-                android:textColor="#fff"
+                android:layout_margin="0dp"
+                android:id="@+id/m_path"
+                android:text="AAAAAAAAAAAAAAAAAAAAAA"
+                android:textSize="15sp"
+                android:textColor="#000000"
                 android:gravity="left"
-                android:background="#ff7a00"
+                android:background="#1C9BDF"
                 android:layout_width="match_parent"
-                android:layout_height="53dp" />
+                android:layout_height="20dp" />
         </LinearLayout>
         <!-- //end 타이틀바 -->
 
         <!-- Notice -->
         <LinearLayout
-            android:padding="24dp"
+
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_margin="0dp">
 
             <ListView
                 android:id="@+id/file_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginBottom="1dp"
+                android:layout_margin="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" >
-
             </ListView>
-
 
         </LinearLayout>
         <!-- Notice -->
-
-        <View
-            android:background="#66bdbdbd"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <!-- 닫기 버튼 -->
-
-        <!--// 닫기 버튼 -->
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

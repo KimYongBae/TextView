@@ -3,6 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorYellowGreen">#CCFFB3</color>
+    <color name="colorYellowGreen">#287907</color>
+    <color name="blue">#ABB4FF</color>
+    <color name="black">#020202</color>
+    <color name="line">#000000</color>
+    <color name="readback">#DCD7D1</color>
+
+
+    <color name="aa">#1C56EC</color>
+    <color name="vv">#4D325AFF</color>
 
 </resources>
