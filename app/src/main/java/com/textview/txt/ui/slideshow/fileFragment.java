@@ -26,6 +26,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class fileFragment extends Fragment {
+    String m_keyPath;
     ArrayList<String> m_list = new ArrayList<>();
     TextView m_path;
     private String MPath;
@@ -41,12 +42,15 @@ public class fileFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_file, container, false);
         m_path = (TextView) root.findViewById(R.id.m_path);
-        /*파일 불러오기*/
 
+        /*파일 불러오기*/
         m_list = file();
         adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, m_list);
         listview = (ListView) root.findViewById(R.id.file_list_view);
         listview.setAdapter(adapter);
+
+        // Retrieving the external storage state
+        m_keyPath = Environment.getExternalStorageDirectory().toString();
 
         //리스트뷰의 아이템을 클릭시 해당 아이템의 문자열을 가져오기 위한 처리
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,22 +60,20 @@ public class fileFragment extends Fragment {
                 String selected_item = (String) adapterView.getItemAtPosition(position);
 
                 try {
-                    //클릭한 아이템의 문자열을 가져옴
-
-                    if(dircke(selected_item)==true)//디렉토리 클릭 할때 파일오픈
-                    {
-                        m_path.append(selected_item);//최종현재경로에 파일이름 붙이기
-                        MPath = m_path.getText().toString();//최종현재경로 백업
+                    if(dircke(selected_item) == true) {
+                        m_path.append(selected_item);                    //최종현재경로에 파일이름 붙이기
+                        MPath = m_path.getText().toString();            //최종현재경로 백업
                         refreshFiles();//리프레쉬
-                    }
-                    else if (selected_item == "../") { //뒤로가기
-                        int end = MPath.lastIndexOf("/");///가 나오는 마지막 인덱스를 찾고
-                        String uppath = MPath.substring(0, end);//그부분을 짤라버림 즉 위로가게됨
-                        MPath = uppath;
-                        m_path.setText(MPath);
-                        refreshFiles();//리프레쉬
-                        //m_path : 경로 출력
-                        //MPath :  현재 경로
+                    }else if (selected_item == "../") {                 //뒤로가기
+                        if(MPath != null) {
+                            if(!m_keyPath.equals(MPath)) {
+                                int end = MPath.lastIndexOf("/");          //가 나오는 마지막 인덱스를 찾고
+                                String uppath = MPath.substring(0, end);         //그부분을 짤라버림 즉 위로가게됨
+                                MPath = uppath;
+                                m_path.setText(MPath);
+                                refreshFiles();
+                            }
+                        }
                     } else if (selected_item != "../") {
                         Log.i("selected_item ::: ", selected_item);
                         MPath = m_path.getText().toString();//최종현재경로 백업
@@ -103,7 +105,6 @@ public class fileFragment extends Fragment {
     }
 
     private ArrayList<String> file() { //파일 목록 읽어오기
-        m_list.add("../");
         String Dname = null;
         //final String path = Environment.getExternalStorageDirectory().toString() + "/KakaoTalkDownload";
         final String path = Environment.getExternalStorageDirectory().toString();
@@ -154,13 +155,14 @@ public class fileFragment extends Fragment {
         listview.setAdapter(adapter);
         File directory = new File(MPath);//경로
         files = directory.listFiles();//디렉토리
-        m_list.add("../");
+        if(!m_keyPath.equals(MPath))
+            m_list.add("../");
+
         for (int i = 0; i < files.length; i++) {
             Dname = files[i].getName();
             Log.i("Files", files[i].getName());
             if (files[i].isDirectory() == true) {
                 Dname = "/" + files[i].getName();
-                //list.add(files[i].getName());
                 m_list.add(Dname);
             } else if (files[i].isFile() == true && Dname.endsWith(".txt") == true) {
                 m_list.add(files[i].getName());
