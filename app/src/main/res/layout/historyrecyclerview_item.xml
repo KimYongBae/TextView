@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity"
+    android:background="@drawable/border" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="TITLE"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="filepath"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="Day"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:includeFontPadding="false"
+        android:text="ScrollPage"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"/>
+</LinearLayout>

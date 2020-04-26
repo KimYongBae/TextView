@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemad.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_open"
+        android:title="열기"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bookmark"
+        android:title="책갈피"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Readtxt_setting"
+        android:title="읽어주기"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Help"
+        android:title="도움말"
+        app:showAsAction="ifRoom" />
+</menu>
