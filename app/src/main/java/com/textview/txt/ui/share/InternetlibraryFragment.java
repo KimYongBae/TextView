@@ -3,9 +3,6 @@ package com.textview.txt.ui.share;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,18 +10,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.textview.txt.R;
 
 public class InternetlibraryFragment extends Fragment implements View.OnClickListener {
-
+    private AdView mAdView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -44,8 +41,49 @@ public class InternetlibraryFragment extends Fragment implements View.OnClickLis
         btnL.setOnClickListener(this);
         btnS.setOnClickListener(this);
 
+
+
         getActivity().invalidateOptionsMenu();
 
+        /* 광고 */
+        MobileAds.initialize(getActivity(), getString(R.string.admob_app_id));
+        mAdView = root.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        // 광고가 제대로 로드 되는지 테스트 하기 위한 코드.
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                // 광고가 문제 없이 로드시 출력됩니다.
+                //Log.d("@@@", "onAdLoaded");
+            }
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                // 광고 로드에 문제가 있을시 출력됩니다.
+                //Log.d("@@@", "onAdFailedToLoad " + errorCode);
+            }
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
+        /**/
         return  root;
 
     }
@@ -91,6 +129,7 @@ public class InternetlibraryFragment extends Fragment implements View.OnClickLis
                 intent.setData(Uri.parse("https://m.search.naver.com/search.naver?query=%EC%9B%B9%ED%88%B0+%EB%A7%8C%ED%99%94"));
                 startActivity(intent);
                 break;
+
         }
     }
 

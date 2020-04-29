@@ -1,5 +1,6 @@
 package com.textview.txt.ui.send;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,6 +21,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.textview.txt.DBHelper;
 import com.textview.txt.MainActivity;
 import com.textview.txt.R;
@@ -31,7 +36,7 @@ import java.util.ArrayList;
 public class bookmarkFragment extends Fragment {
 
     private LinearLayout bookmarkFragment;
-
+    private AdView mAdView;
 
 
     public static HistoryRecyclerAdapter myAdapter;
@@ -54,6 +59,8 @@ public class bookmarkFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_bookmark, container, false);
         setHasOptionsMenu(true);//책갈피는 메뉴바를 새롭게하기위해서
         mRecyclerView = root.findViewById(R.id.bookmark);
+        mAdView = root.findViewById(R.id.adView);
+
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -110,6 +117,48 @@ public class bookmarkFragment extends Fragment {
         myAdapter.notifyDataSetChanged();
 
         getActivity().invalidateOptionsMenu();
+
+
+        /* 광고 */
+        MobileAds.initialize(getActivity(), getString(R.string.admob_app_id));
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        // 광고가 제대로 로드 되는지 테스트 하기 위한 코드.
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                // 광고가 문제 없이 로드시 출력됩니다.
+                Log.d("@@@", "onAdLoaded");
+            }
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                // 광고 로드에 문제가 있을시 출력됩니다.
+                Log.d("@@@", "onAdFailedToLoad " + errorCode);
+            }
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
+        /**/
+
         return root;
     }
 

@@ -2,7 +2,9 @@ package com.textview.txt;
 
 import android.Manifest;
 
-import android.content.Context;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
